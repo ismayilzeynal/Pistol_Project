@@ -1,0 +1,14 @@
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\bin\Debug\netcoreapp3.1\Pistol.exe
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\bin\Debug\netcoreapp3.1\Pistol.deps.json
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\bin\Debug\netcoreapp3.1\Pistol.runtimeconfig.json
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\bin\Debug\netcoreapp3.1\Pistol.runtimeconfig.dev.json
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\bin\Debug\netcoreapp3.1\Pistol.dll
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\bin\Debug\netcoreapp3.1\Pistol.pdb
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\obj\Debug\netcoreapp3.1\Pistol.csproj.AssemblyReference.cache
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\obj\Debug\netcoreapp3.1\Pistol.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\obj\Debug\netcoreapp3.1\Pistol.AssemblyInfoInputs.cache
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\obj\Debug\netcoreapp3.1\Pistol.AssemblyInfo.cs
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\obj\Debug\netcoreapp3.1\Pistol.csproj.CoreCompileInputs.cache
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\obj\Debug\netcoreapp3.1\Pistol.dll
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\obj\Debug\netcoreapp3.1\Pistol.pdb
+C:\Users\asus\OneDrive\Desktop\Code Academy\Project\Pistol\Pistol\obj\Debug\netcoreapp3.1\Pistol.genruntimeconfig.cache
