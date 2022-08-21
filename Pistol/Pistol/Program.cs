@@ -7,28 +7,13 @@ namespace Pistol
     {
         static void Main(string[] args)
         {
-            
-            Main:
-                Console.Clear();
-                MainMenu();
-
-                //Console.WriteLine("0) exit \n1) Main");
-                //int choise = -1;
-                //while (choise != 0 && choise != 1)
-                //    TryInt(out choise);
-                //if (choise == 0)
-                //    Exit();
-                //else
-                //    goto Main;
+            MainMenu();
         }
-
-
-
 
 
         public static void MainMenu()
         {
-            int choise=-1;
+            int choise = -1;
             Console.WriteLine("1) Create custom weapon  \n2) Choose advance weapon  \n0) Exit");
             InputArrows();
             while (choise < 0 || choise > 2)
@@ -38,9 +23,14 @@ namespace Pistol
                 CustomWeapon();
             else if (choise == 0)
                 Exit();
-            
-                
+
+
         }
+
+
+
+
+
 
 
 
@@ -52,14 +42,18 @@ namespace Pistol
 
         public static void CustomWeapon()
         {
-            int MagazineCapacity = -1, LeftBulletCount = -1, FireMode = -1;
+            int MagazineCapacity = -1, LeftBulletCount = -1, FireMode;
             float DischargeTime = -1;
             string FireModeName = "";
             bool Test = true;           // (inverse) test for if input is false
 
 
-            //cls
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Please input fields \n");
+            Console.ForegroundColor = ConsoleColor.White;
+
+
             while (Test)
             {
                 Console.Write("Magazine capacity: ");
@@ -78,6 +72,7 @@ namespace Pistol
                 goto Bottom;
             }
 
+
             Test = true;
             while (Test)
             {
@@ -87,17 +82,16 @@ namespace Pistol
                 if (Test || LeftBulletCount < 0 || LeftBulletCount > MagazineCapacity)
                     PEC(ref Test);
             }
-            
+
 
             Test = true;
             while (Test)
             {
-                Console.Write("Discharge time: ");
+                Console.Write("Discharge time (sec): ");
                 InputArrows();
                 Test = !Single.TryParse(Console.ReadLine(), out DischargeTime);
                 if (Test || DischargeTime <= 0)
                     PEC(ref Test);
-
             }
 
 
@@ -118,10 +112,19 @@ namespace Pistol
                 }
             }
 
-            Bottom:
-                Weapon Gun = new Weapon(MagazineCapacity, LeftBulletCount, DischargeTime, FireModeName);
-                CommandMenu(Gun);
+        Bottom:
+            Weapon Gun = new Weapon(MagazineCapacity, LeftBulletCount, DischargeTime, FireModeName);
+            CommandMenu(Gun);
         }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -132,56 +135,83 @@ namespace Pistol
 
         public static void CommandMenu(Weapon Gun)
         {
-            Commands:
-                Console.Clear();
-                int choise = -1;
-                Console.WriteLine("0) Info \n1) Shoot \n2) Fire \n3) Get Remain Bullet Count \n4) Reload \n5) Change Fire Mode \n6) Exit \n7) Edit");
-                while (!(choise >= 0 && choise < 8))
-                    TryInt(out choise);
+            bool isCorrectInput = true;
+        Commands:
+            Console.Clear();
+            if (!isCorrectInput)
+                PEC();
 
-                Console.Clear();
-                switch(choise)
-                {
-                    case 0:
-                        Gun.GetInfo();
-                        break;
-                    case 1:
-                        Gun.Shoot();
-                        break;
-                    case 2:
-                        Gun.Fire();
-                        break;
-                    case 3:
-                    Console.WriteLine(Gun.GetRemainBulletCount()); 
-                        break;
-                    case 4:
-                        Gun.Reload();
-                        break;
-                    case 5:
-                        Gun.ChangeFireMode();
-                        break;
-                    case 6:
-                        Exit();
-                        return;
-                        break;
-                    case 7:
-                        Edit(Gun);
-                        break;
-                    default:
-                        Console.WriteLine("Error 404");
-                        break;
-                }
+            isCorrectInput = true;
 
-                choise = -1;
-                Console.WriteLine("0) Back  \n1) Exit");
-                while (choise != 0 && choise != 1)
-                    TryInt(out choise);
-                if (choise == 0)
-                    goto Commands;
-                else
+
+
+        CommandsForShoot:
+            Console.WriteLine("0) Info \n1) Shoot \n2) Fire \n3) Get Remain Bullet Count \n4) Reload \n5) Change Fire Mode \n6) Exit \n7) Edit");
+
+
+
+            System.ConsoleKeyInfo choise;
+            InputArrows();
+            choise = Console.ReadKey();
+            Console.Clear();
+
+            if (choise.Key == ConsoleKey.NumPad1)
+            {
+                // single or auto check
+                Gun.Shoot();
+                goto CommandsForShoot;
+            }
+
+
+
+
+            switch (choise.Key)
+            {
+                case ConsoleKey.NumPad0:
+                    Gun.GetInfo();
+                    break;
+                case ConsoleKey.NumPad1:
+                    Gun.Shoot();
+                    break;
+                case ConsoleKey.NumPad2:
+                    Gun.Fire();
+                    break;
+                case ConsoleKey.NumPad3:
+                    Console.WriteLine(Gun.GetRemainBulletCount());
+                    break;
+                case ConsoleKey.NumPad4:
+                    Gun.Reload();
+                    break;
+                case ConsoleKey.NumPad5:
+                    Gun.ChangeFireMode();
+                    break;
+                case ConsoleKey.NumPad6:
                     Exit();
+                    return;
+                case ConsoleKey.NumPad7:
+                    Edit(Gun);
+                    break;
+                default:
+                    isCorrectInput = false;
+                    goto Commands;
+            }
 
+        TopBack:
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("0) Back  \n1) Exit");
+            InputArrows();
+            choise = Console.ReadKey();
 
+            if (choise.Key == ConsoleKey.NumPad0)
+                goto Commands;
+            else if (choise.Key == ConsoleKey.NumPad1)
+                Exit();
+            else
+            {
+                isCorrectInput = false;
+                Console.Clear();
+                goto TopBack;
+            }
         }
 
 
@@ -209,7 +239,6 @@ namespace Pistol
                     Gun.ChangeDischargeTime();
                     break;
             }
-
         }
 
 
@@ -229,10 +258,16 @@ namespace Pistol
 
         public static void PEC(ref bool test)           // please enter correctly
         {
-            Console.WriteLine("Please enter correctly");
+            PEC();
             test = true;
         }
 
+        public static void PEC()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("Please enter correctly");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
 
         public static void InputArrows()
         {
@@ -240,15 +275,14 @@ namespace Pistol
             Console.Write(">>> ");
             Console.ForegroundColor = ConsoleColor.White;
         }
-        
+
 
         public static void TryInt(out int choise)
         {
-
             while (!int.TryParse(Console.ReadLine(), out choise))
             {
+                PEC();
                 InputArrows();
-                Console.WriteLine("Please enter correctly");
             }
         }
 
@@ -256,7 +290,7 @@ namespace Pistol
         {
             while (!Char.TryParse(Console.ReadLine(), out choise))
             {
-                Console.WriteLine("Please enter correctly");
+                PEC();
             }
             choise = Char.ToUpper(choise);
         }
@@ -264,9 +298,9 @@ namespace Pistol
 
         public static void Exit()
         {
-            Console.WriteLine("Thanks for using");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n\t\t\t\t\t\tThanks for using");
+            Console.ForegroundColor = ConsoleColor.Black;
         }
-
-
     }
 }
