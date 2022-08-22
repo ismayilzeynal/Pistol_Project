@@ -89,13 +89,38 @@ namespace Pistol.Models
         {
             if (LeftBulletCount > 0)
             {
+                #region press for Auto Shoot
+                //if (FireMode == "Auto")
+                //{
+                //    LeftBulletCount--;
+                //    Console.ForegroundColor = ConsoleColor.Yellow;
+                //    Console.WriteLine("a shot fired\n");
+                //    Thread.Sleep((int)(1000 * DischargeTime / MagazineCapacity));
+                //}
+                //else
+                //{
+                //    LeftBulletCount--;
+                //    Console.ForegroundColor = ConsoleColor.Yellow;
+                //    Console.WriteLine("a shot fired\n");
+                //    // need to KeyUp 
+                //}
+                #endregion
+
+                #region Normal form
+
                 if (FireMode == "Auto")
+                    Fire();
+                else
                 {
                     LeftBulletCount--;
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("a shot fired\n");
                     Thread.Sleep((int)(1000 * DischargeTime / MagazineCapacity));
                 }
+
+                #endregion
+
+
                 if (LeftBulletCount == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -113,10 +138,24 @@ namespace Pistol.Models
         {
             if (LeftBulletCount > 0)
             {
-                float time = DischargeTime / MagazineCapacity * LeftBulletCount;
-                Thread.Sleep((int)time * 1000);
-                Console.WriteLine($"{time} sec");
-                LeftBulletCount = 0;
+                #region Another form (wrong form)
+                //float time = DischargeTime / MagazineCapacity * LeftBulletCount;
+                //Thread.Sleep((int)time * 1000);
+                //Console.WriteLine($"{time} sec");
+                //LeftBulletCount = 0;
+                #endregion
+
+                #region Normal form
+                if (FireMode == "Auto")
+                {
+                    float time = DischargeTime / MagazineCapacity * LeftBulletCount;
+                    Thread.Sleep((int)time * 1000);
+                    Console.WriteLine($"{time} sec");
+                    LeftBulletCount = 0;
+                }
+                else
+                    Shoot();
+                #endregion
             }
             else
                 Reload();
@@ -157,7 +196,6 @@ namespace Pistol.Models
                 Console.WriteLine($"Fire mode: {FireMode}");
             }
         }
-
 
 
         public void GetInfo()

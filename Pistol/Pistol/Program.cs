@@ -157,7 +157,6 @@ namespace Pistol
 
             if (choise.Key == ConsoleKey.NumPad1)
             {
-                // single or auto check
                 Gun.Shoot();
                 goto CommandsForShoot;
             }
